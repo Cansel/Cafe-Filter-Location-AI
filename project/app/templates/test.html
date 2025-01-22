@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Harita</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRSMh1-c3bIj19jnTjVBscwAU3yHY0E28&callback=initMap" async defer></script>
+</head>
+<body>
+    <div id="map" style="height: 500px; width: 100%;"></div>
+
+    <script>
+        function initMap() {
+            var location = { lat: 38.3099, lng: 38.2592 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: location
+            });
+
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+</body>
+</html>

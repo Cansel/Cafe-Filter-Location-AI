@@ -1,0 +1,76 @@
+/* Genel sayfa stili */
+body {
+    font-family: 'Arial', sans-serif;
+
+   background-image: url('/static/images/cafe.jpg');
+    background-size: cover;  /* Fotoğrafın tüm ekranı kaplamasını sağlar */
+    background-position: center; /* Fotoğrafın ortalanmasını sağlar */
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+h2 {
+    color: #444;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+/* Form container */
+.form-container {
+    background-color: #fdf4e3;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Form input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+/* Submit button */
+button[type="submit"] {
+    background-color: #2B1700;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2B1700;
+}
+
+/* Footer */
+p {
+    font-size: 1em;
+}
+
+a {
+    color: #2B1700;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+

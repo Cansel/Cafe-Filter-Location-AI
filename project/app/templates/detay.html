@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detay Sayfası</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detay.css') }}">
+</head>
+
+<body>
+    <!-- Ana Container: Sayfanın tüm içeriğini saran ana kapsayıcı div -->
+    <div class="container">
+        <!-- Sol Kısım: Formlar ve Kelime Filtreleme -->
+        <div class="left-column">
+            <h2>Detay Sayfası</h2>
+
+            <!-- Anahtar Kelime ile Filtreleme Formu -->
+            <form method="POST">
+                <select name="filter-keywords" id="filter-keywords" required>
+                    <option value="" disabled selected>Kelime Seçin</option>
+                    {% for keyword in keywords %}
+                        <option value="{{ keyword }}">{{ keyword }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Filtrele</button>
+            </form>
+
+            <!-- Filtrelenmiş Kafeler -->
+            <div class="filtered-cafes">
+                <h2>Filtrelenmiş Kafeler</h2>
+                {% if cafes %}
+                    <ul>
+                        {% for cafe in cafes %}
+                            <li>
+                                <strong>{{ cafe.name }}</strong><br>
+                                Adres: {{ cafe.address }}<br>
+                                Konum: ({{ cafe.latitude }}, {{ cafe.longitude }})<br>
+                                <a href="https://www.google.com/maps?q={{ cafe.latitude }},{{ cafe.longitude }}" target="_blank">Haritada Görüntüle</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Filtreye uygun kafe bulunamadı.</p>
+                {% endif %}
+            </div>
+
+            <!-- Yorum ve Puanlama Formu -->
+            <div class="form-container">
+                <form method="POST">
+                    <!-- Yorum Alanı -->
+                    <label for="comment">Yorumunuzu yazın:</label><br>
+                    <textarea id="comment" name="comment" rows="4" cols="50" required>{{ comment if comment else "" }}</textarea><br><br>
+
+                    <!-- Puanlama Alanı -->
+                    <label for="rating">Puanlama:</label><br>
+                    <select id="rating" name="rating" required>
+                        <option value="1" {% if rating =='1' %}selected{% endif %}>1</option>
+                        <option value="2" {% if rating =='2' %}selected{% endif %}>2</option>
+                        <option value="3" {% if rating =='3' %}selected{% endif %}>3</option>
+                        <option value="4" {% if rating =='4' %}selected{% endif %}>4</option>
+                        <option value="5" {% if rating =='5' %}selected{% endif %}>5</option>
+                    </select><br><br>
+
+                    <!-- Form Gönderme Butonu -->
+                    <button type="submit">Gönder</button>
+                </form>
+            </div>
+
+            <!-- Diğer içerikler ve önerilen konular -->
+            <div class="topics">
+                <h2>Önerilen Konular</h2>
+                <ul>
+                    {% for topic in topics %}
+                        <li>{{ topic }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sağ Kısım: Harita -->
+        <div class="right-column">
+            <h3>Harita</h3>
+            <!-- Harita için yer ayrılan alan -->
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Kısımları -->
+    <script>
+        // Google Maps API ile harita başlatma fonksiyonu
+        function initMap() {
+            // Varsayılan konum: Malatya koordinatları
+            var defaultLocation = { lat: 38.3099, lng: 38.2592 };
+
+            // Haritayı başlatıyoruz ve varsayılan olarak Malatya'ya odaklanıyoruz
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: defaultLocation
+            });
+
+
+
+            // Kullanıcının konumunu alıyoruz
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    // Kullanıcının mevcut konumunu alıyoruz
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Harita merkezini kullanıcının konumuna ayarlıyoruz
+                    map.setCenter(userLocation);
+
+                    // Kullanıcının konumunu haritada gösteren bir işaretçi ekliyoruz
+                    new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: 'Sizin Konumunuz'
+                    });
+                }, function() {
+                    // Eğer kullanıcı konumunu paylaşmazsa, varsayılan konumu kullanıyoruz
+                    alert("Konum alınamadı, varsayılan konum gösteriliyor.");
+                    map.setCenter(defaultLocation);
+                    new google.maps.Marker({
+                        position: defaultLocation,
+                        map: map,
+                        title: 'Varsayılan Konum'
+                    });
+                });
+            } else {
+                // Tarayıcı Geolocation API'yi desteklemiyorsa
+                alert("Tarayıcınız Geolocation API'yi desteklemiyor.");
+                map.setCenter(defaultLocation);
+                new google.maps.Marker({
+                    position: defaultLocation,
+                    map: map,
+                    title: 'Varsayılan Konum'
+                });
+            }
+
+            // Kafeler haritada gösterilsin
+            {% for cafe in cafes %}
+                var cafeLocation = { lat: {{ cafe.latitude }}, lng: {{ cafe.longitude }} };
+                new google.maps.Marker({
+                    position: cafeLocation,
+                    map: map,
+                    title: '{{ cafe.name }}'
+                });
+            {% endfor %}
+        }
+    </script>
+
+    <!-- Google Maps API Anahtarınızı buraya yerleştirin -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNyS_5KsB1b30Fj2LKcMVTv-_YWyQ69ug&callback=initMap" async defer></script>
+
+
+    <!-- Ana Sayfaya Gitme Linki -->
+
+<p style="color: black; font-size: 18px; font-family: Arial, sans-serif; font-weight: bold;">
+    <a href="/" style="text-decoration: none; color: black;">Ana Sayfa</a>
+</p>
+
+</body>
+
+</html>

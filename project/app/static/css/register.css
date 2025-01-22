@@ -1,0 +1,92 @@
+/* Genel sayfa stili */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('/static/images/resim5.jpg'); /* Arka plan resmi */
+    background-size: cover;  /* Resmin ekran boyutuna göre ayarlanmasını sağlar */
+    background-position: center; /* Resmin merkezde yer almasını sağlar */
+    background-attachment: fixed;
+
+    color: #333; /* Metin rengi */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Başlık stilini düzenleyelim */
+h2 {
+    color: #333;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px; /* Form ile arasındaki boşluğu arttırdık */
+}
+
+/* Form container */
+form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Form genişliği */
+    box-sizing: border-box;
+}
+
+/* Form elemanları arasındaki boşlukları düzenleyelim */
+form div {
+    margin-bottom: 20px;
+}
+
+/* Etiketler için stil */
+form label {
+    font-size: 1.2em;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Input alanları için stil */
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Buton için stil */
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #F4E1D2; /* Yeşil yerine krem rengi */
+    color: #333;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #E3D1B9; /* Hover rengi için hafif koyu krem */
+}
+
+/* Bağlantıların alt kısmı */
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p a {
+    color: #F4E1D2; /* Yeşil yerine krem rengi */
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

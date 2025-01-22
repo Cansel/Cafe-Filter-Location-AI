@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <title>Kafe Öneri</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+
+  <!-- Link to Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+
+  <!-- Link to CSS files in static directory -->
+  <link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet" type="text/css" media="all">
+  <link href="{{ url_for('static', filename='css/fonts.css') }}" rel="stylesheet" type="text/css" media="all">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="header-wrapper">
+    <div id="header" class="container">
+      <div id="logo">
+        <h1><a href="#">TASTELOCATOR</a></h1>
+      </div>
+      <div id="menu">
+        <ul>
+          <li class="current_page_item"><a href="#" accesskey="1" title="">Ana Sayfa</a></li>
+          <li><a href="{{ url_for('register') }}" accesskey="2" title="">Kayıt Ol</a></li>
+          <li><a href="{{ url_for('detay') }}" accesskey="2" title="">Detay</a></li>
+
+          <li><a href="{{ url_for('login') }}" accesskey="5" title="">Giriş Yap</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="header-featured" style="background-image: url('{{ url_for('static', filename='images/resim4.jpg') }}');">
+    <!-- Featured section with an image -->
+  </div>
+
+  <div id="wrapper">
+    <div id="featured-wrapper">
+      <div id="featured" class="container">
+        <div class="column1">
+          <span class="icon icon-cogs"></span>
+          <div class="title">
+            <h2 style="color: black">Web Kafe Öneri Projem</h2>
+          </div>
+          <p style="font-weight: bold; font-size: 18px;">Bu proje, kullanıcılara Malatya'daki kafeleri yapay zeka desteğiyle öneriyor. Kullanıcılar, çeşitli filtreleme kriterlerine göre önerilen kafeleri haritada görüntüleyebilir ve deneyimlerini yorumlayabilirler. Proje, Flask, MongoDB ve Google Places API kullanılarak geliştirilmiştir.</p>
+          <!-- Fotoğraf ekleme -->
+          <img src="static/images/resim6.webp" alt="Proje Görseli" style="max-width: 1000px; width: 100%; height: 40dp; border-radius: 8px;">
+        </div>
+        <div class="column2">
+          <span class="icon icon-legal"></span>
+          <div class="title">
+            <h2 style="color: black">Malatya'daki En İyi Kafeleri Keşfedin</h2>
+          </div>
+          <p style="font-weight: bold; font-size: 18px;"> Malatya'daki en popüler kafelere hızlıca ulaşmak hiç bu kadar kolay olmamıştı! Yapay zeka destekli önerilerimiz sayesinde, istediğiniz özelliklere sahip kafeleri keşfetmek sadece bir tık uzağınızda. Hem harita üzerinden kolayca lokasyonları görüntüleyebilir, hem de diğer kullanıcıların yorumlarını okuyarak en uygun mekanı bulabilirsiniz. <br><br>
+    İster kahvenizi yudumlayacak sakin bir köşe arayın, ister arkadaşlarınızla keyifli bir buluşma noktası seçin, tüm ihtiyaçlarınıza uygun kafeler burada! Keşfetmeye başlayın ve en sevdiğiniz kafeyi bulun.</p>
+          <img src="static/images/resim7.webp" alt="Proje Görseli" style="max-width: 1000px; width: 100%; height: 50dp; border-radius: 8px;">
+        </div>
+        <div class="column3">
+          <span class="icon icon-unlock"></span>
+          <div class="title">
+            <h2 style="color: black">En Sevdiğiniz Kafeyi Harita Üzerinde Bulun</h2>
+          </div>
+          <p style="font-weight: bold; font-size: 18px;">Harita üzerinde hızlıca keşfedin ve en uygun kafeyi bulun! Konum bazlı filtreleme ile çevrenizdeki mekanları keşfedin, en beğenilen kafeleri harita üzerinde görüntüleyin.</p>
+          <img src="static/images/resim9.webp" alt="Proje Görseli" style="max-width: 1000px; width: 100%; height: 50dp; border-radius: 8px;">
+        </div>
+
+      </div>
+    </div>
+
+   <div id="contact" class="container">
+    <h2>İletişime Geçin</h2>
+    <p>Bizimle iletişim kurmak için aşağıdaki formu doldurabilirsiniz. En kısa sürede size geri dönüş yapacağız!</p>
+
+
+<!-- İletişim Formu -->
+      <form action="/submit_contact" method="POST" class="contact-form">
+          <div class="form-group">
+              <label for="name">Adınız:</label>
+              <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+              <label for="email">E-posta Adresiniz:</label>
+              <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+              <label for="message">Mesajınız:</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+
+          <div class="form-group">
+              <button type="submit" class="button">Gönder</button>
+          </div>
+      </form>
+
+      <!-- İletişim Bilgileri -->
+      <div class="contact-info">
+          <h3>Bizimle Diğer Yollarla İletişim Kurabilirsiniz</h3>
+          <p><strong>Telefon:</strong> +90 543 125 27 34</p>
+          <p><strong>E-posta:</strong> zercansel@gmail.com & ayseats44@gmail.com</p>
+          <p><strong>Adres:</strong> Malatya, Türkiye</p>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

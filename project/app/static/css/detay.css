@@ -1,0 +1,94 @@
+/* Genel Sayfa Stili */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-image: url('/static/images/resim11.jpg'); /* Arka plan resmi */
+    background-size: cover;  /* Resmin ekran boyutuna göre ayarlanmasını sağlar */
+    background-position: center; /* Resmin merkezde yer almasını sağlar */
+    background-attachment: fixed;  /* Sayfa kaydırıldığında arka planın sabit kalmasını sağlar */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Sol Kısım: Formlar ve Filtreleme */
+.left-column {
+    width: 60%;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+form textarea, form select, form button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1.1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form button {
+    background-color: #2B1700;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #2B1700;
+}
+
+/* Filtreleme kısmı */
+.filter-container {
+    margin: 20px 0;
+    text-align: left;
+    width: 100%;  /* Yüzde olarak genişlik */
+}
+
+.filter-container select {
+    padding: 12px;
+    width: 100%;  /* Tam genişlik */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1.1em;
+    box-sizing: border-box; /* Padding ve border hesaplamalarına dahil et */
+}
+
+/* Sağ Kısım: Harita */
+.right-column {
+    width: 35%;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-column, .right-column {
+        width: 100%;
+        padding: 15px;
+    }
+}
